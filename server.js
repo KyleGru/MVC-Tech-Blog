@@ -3,7 +3,7 @@ const exphbs = require('express-handlebars');
 const hbs = require({});
 const routes = require('./controllers/');
 
-const app = exprexx();
+const app = express();
 const PORT = process.env.PORT || 3001;
 
 const session = require('express-session');

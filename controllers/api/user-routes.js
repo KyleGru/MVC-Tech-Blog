@@ -108,7 +108,7 @@ router.post('/logout', (req, res) => {
     }
 });
 
-router.put('id:', async (req, res) => {
+router.put('/id:', async (req, res) => {
     try {
         const userData = await User.update(req.body, {
             individualHooks: true,
@@ -116,7 +116,7 @@ router.put('id:', async (req, res) => {
                 id: req.params.id,
             },
         });
-        if (!userData[0]) {
+        if (userData === 0) {
             res.status(404).json({ message: 'No user found with this id' });
             return;
         }
@@ -133,7 +133,7 @@ router.delete('/:id', async (req, res) => {
                 id: req.params.id,
             },
         });
-        if (!userData) {
+        if (userData === 0) {
             res.status(404).json({ message: 'No user found with this id' });
             return;
         }

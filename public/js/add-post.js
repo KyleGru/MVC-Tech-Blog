@@ -1,4 +1,4 @@
-async function newFormHandler(event) {
+const newFormHandler = async (event) => {
     event.preventDefault();
 
     const title = document.querySelector('input[name="post-title"]').value;
@@ -8,11 +8,10 @@ async function newFormHandler(event) {
         method: 'POST',
         body: JSON.stringify({
             title,
-            post_content
+            post_content,
+            headers: { 'Content-Type': 'application/json' }
         }),
-        headers: {
-            'Content-Type': 'application/json'
-        }
+
     });
 
     if (response.ok) {
@@ -22,4 +21,4 @@ async function newFormHandler(event) {
     }
 };
 
-document.querySelector('.new-post-form').addEventListener('submit', newFormHandler);
+document.querySelector('#new-post').addEventListener('submit', newFormHandler);

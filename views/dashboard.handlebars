@@ -1,0 +1,17 @@
+{{#if posts.length}}
+<section>
+    <h2>Your Dashboard</h2>
+    {{#each posts as |post|}}
+    <div class="card">
+        <div class card-header>
+            <h3><a class="link" href="/dashboard/edit/{{id}}">{{title}}</a></h3>
+        </div>
+    </div>
+    {{/each}}
+
+</section>
+{{/if}}
+
+<button type="submit" class="button"><a class="link" href="/dashboard/new/">Add New Post</a></button>
+
+<script src="/public/js/addpost.js"></script>

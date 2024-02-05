@@ -49,13 +49,25 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
-router.get('/signup', (req, res) => {
-    if (req.session.logged_in) {
-        res.redirect('/');
-        return;
-    }
+router.post('/signup', async (req, res) => {
+    try {
+        const userData = await User.create({
+            username: req.body.username,
+            password: req.body.password,
+        });
+        req.session.save(() => {
+            req.session.user_id = userData.id;
+            req.session.username = userData.username;
+            req.session.logged_in = true;
 
-    res.render('signup');
+            res.status(200).json(userData);
+        });
+    } catch (err) {
+        res.status(400).json(err);
+    }
 });
+
+
+
 
 module.exports = router;

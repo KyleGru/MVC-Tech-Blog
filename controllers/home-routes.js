@@ -49,7 +49,16 @@ router.get('/login', (req, res) => {
     res.render('login');
 });
 
-router.post('/signup', async (req, res) => {
+router.get('/sign-up', (req, res) => {
+    if (req.session.logged_in) {
+        res.redirect('/');
+        return;
+    }
+
+    res.render('sign-up');
+});
+
+router.post('/sign-up', async (req, res) => {
     try {
         const userData = await User.create({
             username: req.body.username,
